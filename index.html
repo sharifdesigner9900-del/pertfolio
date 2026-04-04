@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Hashmi Studio | PREMIUM ANIMATION Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts: Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Exact Color Requested: #7C3AED */
+            --primary: #7C3AED; 
+            --primary-glow: rgba(124, 58, 237, 0.4);
+            --secondary: #080808;
+            --glass: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+        
+        body {
+            background-color: var(--secondary);
+            color: #ffffff;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+            -webkit-tap-highlight-color: rgba(124, 58, 237, 0.15);
+        }
+        body.nav-menu-open {
+            overflow: hidden;
+            touch-action: none;
+        }
+        @media (max-width: 1023px) {
+            .floating { animation: none; }
+        }
+        @media (hover: hover) {
+            .glass-card:hover {
+                border-color: var(--primary);
+                background: rgba(124, 58, 237, 0.05);
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        /* Typography */
+        .font-heavy { font-weight: 800; }
+        
+        /* Accents */
+        .text-primary { color: var(--primary); }
+        .bg-primary { background-color: var(--primary); }
+        .border-primary { border-color: var(--primary); }
+
+        /* Professional Glassmorphism */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .nav-blur {
+            backdrop-filter: blur(20px);
+            background: rgba(8, 8, 8, 0.85);
+        }
+
+        /* Hero Text Gradient */
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5.5rem);
+            line-height: 1.1;
+            background: linear-gradient(to bottom, #ffffff 70%, rgba(255,255,255,0.4));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            background: #000;
+        }
+        .video-wrapper iframe,
+        .video-wrapper video,
+        .video-wrapper img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            object-fit: cover;
+        }
+
+        .showreel-play-overlay {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: rgba(0, 0, 0, 0.4);
+            border: none;
+            cursor: pointer;
+            transition: opacity 0.35s ease, background 0.25s ease;
+            border-radius: 16px;
+        }
+        .showreel-play-overlay:hover {
+            background: rgba(124, 58, 237, 0.22);
+        }
+        .showreel-play-overlay.is-hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        @media (max-width: 639px) {
+            .showreel-play-icon {
+                width: 3.5rem;
+                height: 3.5rem;
+            }
+            .showreel-play-icon i {
+                font-size: 1.1rem;
+            }
+            .showreel-play-label {
+                letter-spacing: 0.2em;
+                font-size: 9px;
+            }
+        }
+        .showreel-play-icon {
+            width: 4.5rem;
+            height: 4.5rem;
+            border-radius: 50%;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.45);
+            transition: transform 0.25s ease;
+        }
+        .showreel-play-overlay:hover .showreel-play-icon {
+            transform: scale(1.06);
+        }
+        .showreel-play-icon i {
+            font-size: 1.35rem;
+            margin-left: 3px;
+            color: #fff;
+        }
+        .showreel-play-label {
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        /* Animated background glow - Custom Purple */
+        .glow {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--primary);
+            filter: blur(160px);
+            opacity: 0.12;
+            z-index: -1;
+            border-radius: 50%;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating { animation: float 6s ease-in-out infinite; }
+
+        /* Form Inputs */
+        .form-input {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: white;
+            transition: all 0.3s;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.2);
+        }
+
+        /* Status Messages */
+        #form-status {
+            display: none;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+        #form-status.success {
+            display: block;
+            background: rgba(34, 197, 94, 0.2);
+            color: #4ade80;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+        #form-status.error {
+            display: block;
+            background: rgba(239, 68, 68, 0.2);
+            color: #f87171;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+        }
+
+        .avatar-glow {
+            box-shadow: 0 0 35px var(--primary-glow);
+            border: 2px solid var(--primary);
+        }
+
+        @media (max-width: 640px) {
+            input.form-input,
+            select.form-input,
+            textarea.form-input {
+                font-size: 16px;
+            }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #080808; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--primary); }
+    </style>
+</head>
+<body>
+
+    <!-- Glow Effects -->
+    <div class="glow top-0 left-0"></div>
+    <div class="glow bottom-[10%] right-0"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-[100] nav-blur border-b border-white/5 pt-[env(safe-area-inset-top)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center gap-3">
+            <a href="#home" class="flex items-center space-x-2 sm:space-x-3 min-w-0">
+                <img src="all%20images/ChatGPT%20Image%20Apr%203%2C%202026%2C%2006_43_06%20PM.png" alt="Hashmi Logo" class="w-9 h-9 sm:w-10 sm:h-10 shrink-0 rounded-full border border-primary object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Hashmi+Studio&background=7C3AED&color=fff'">
+                <div class="text-base sm:text-xl font-heavy tracking-tighter uppercase truncate">
+                    Hashmi <span class="text-primary">Studio</span>
+                </div>
+            </a>
+            <div class="hidden md:flex items-center space-x-8 lg:space-x-10 text-[10px] font-bold uppercase tracking-[0.2em] text-gray-400">
+                <a href="#home" class="hover:text-primary transition">Home</a>
+                <a href="#work" class="hover:text-primary transition">Portfolio</a>
+                <a href="#contact" class="hover:text-primary transition">Contact</a>
+                <a href="#contact" class="text-primary border border-primary/30 px-5 lg:px-6 py-2 rounded-full hover:bg-primary hover:text-white transition shadow-[0_0_15px_rgba(124,58,237,0.3)] whitespace-nowrap">Hire Studio</a>
+            </div>
+            <button type="button" id="nav-toggle" class="md:hidden shrink-0 w-11 h-11 min-w-[2.75rem] min-h-[2.75rem] rounded-xl border border-white/15 flex items-center justify-center text-white active:bg-white/10" aria-label="Open menu" aria-expanded="false" aria-controls="nav-mobile">
+                <i class="fas fa-bars text-lg" id="nav-toggle-icon" aria-hidden="true"></i>
+            </button>
+        </div>
+        <div id="nav-mobile" class="fixed inset-0 z-[90] hidden flex-col gap-1 px-5 sm:px-8 pt-24 pb-10 sm:pb-12 bg-[#050505]/[0.97] backdrop-blur-xl md:hidden overflow-y-auto overscroll-contain" role="dialog" aria-modal="true" aria-label="Site menu">
+            <a href="#home" class="nav-mobile-link text-lg font-bold uppercase tracking-widest text-white py-4 border-b border-white/10 hover:text-primary transition">Home</a>
+            <a href="#work" class="nav-mobile-link text-lg font-bold uppercase tracking-widest text-white py-4 border-b border-white/10 hover:text-primary transition">Portfolio</a>
+            <a href="#contact" class="nav-mobile-link text-lg font-bold uppercase tracking-widest text-white py-4 border-b border-white/10 hover:text-primary transition">Contact</a>
+            <a href="#contact" class="mt-4 text-center bg-primary text-white py-4 rounded-2xl font-bold text-xs uppercase tracking-widest shadow-[0_0_20px_rgba(124,58,237,0.35)]">Hire Studio</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center pt-[calc(5rem+env(safe-area-inset-top))] sm:pt-24 pb-12 sm:pb-0 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 lg:gap-16 items-center w-full">
+            <div class="z-10 text-center lg:text-left min-w-0">
+                <div class="inline-flex items-center gap-2 sm:gap-3 mb-6 bg-white/5 border border-white/10 px-3 sm:px-4 py-2 rounded-full mx-auto lg:mx-0 max-w-full">
+                    <span class="flex h-2 w-2 shrink-0 rounded-full bg-primary animate-pulse"></span>
+                    <span class="text-[9px] sm:text-[10px] font-bold uppercase tracking-wider sm:tracking-widest text-gray-300 text-left sm:text-center">Certified Excellence • 150+ Projects</span>
+                </div>
+                
+                <h1 class="hero-title font-heavy mb-8">
+                    PREMIUM <br> <span class="text-primary">ANIMATION</span>
+                </h1>
+                
+                <p class="text-gray-400 text-lg md:text-xl mb-10 max-w-lg font-light leading-relaxed mx-auto lg:mx-0">
+                    Hashmi Studio delivers high-end 2D visuals for industry-leading YouTube channels and global digital brands. Bringing motion to your imagination.
+                </p>
+                
+                <div class="flex flex-wrap gap-5 justify-center lg:justify-start">
+                    <a href="#work" class="bg-primary px-10 py-5 rounded-2xl font-bold hover:shadow-[0_20px_40px_rgba(124, 58, 237, 0.4)] transition-all transform hover:-translate-y-1 text-center w-full sm:w-auto uppercase text-xs tracking-widest">
+                        View Portfolio
+                    </a>
+                    <a href="#contact" class="glass-card px-10 py-5 rounded-2xl font-bold border-white/10 hover:border-primary/50 transition-all text-center w-full sm:w-auto uppercase text-xs tracking-widest">
+                        Start a Project
+                    </a>
+                </div>
+            </div>
+
+            <div class="relative floating w-full max-w-xl mx-auto lg:max-w-none mt-2 lg:mt-0">
+                <div class="absolute inset-0 bg-primary/10 blur-[120px] rounded-full pointer-events-none"></div>
+                
+                <!-- Animator Floating Badge -->
+                <div class="hidden lg:flex absolute -top-12 -right-8 glass-card p-4 z-20 items-center space-x-4 border-primary/40 shadow-2xl">
+                    <img src="all%20images/ChatGPT%20Image%20Apr%203%2C%202026%2C%2006_43_06%20PM.png" alt="Hashmi Animator" class="w-14 h-14 rounded-full border-2 border-primary object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Hashmi+Studio&background=7C3AED&color=fff'">
+                    <div>
+                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Lead Animator</p>
+                        <p class="text-sm font-bold">Sharif Hashmi</p>
+                    </div>
+                </div>
+
+                <div class="glass-card p-3 relative z-10">
+                    <div class="video-wrapper rounded-2xl">
+                        <video id="video-showreel" src="videos/porfolio%20video.mp4" poster="all%20images/vlcsnap-2026-04-04-20h22m36s049.png" controls playsinline preload="metadata" title="Hashmi Studio showreel"></video>
+                        <button type="button" class="showreel-play-overlay" id="showreel-play-btn" aria-label="Play showreel">
+                            <span class="showreel-play-icon" aria-hidden="true"><i class="fas fa-play"></i></span>
+                            <span class="showreel-play-label">Watch Showreel</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Floating Milestone Badge -->
+                <div class="hidden lg:block absolute -bottom-6 -left-6 glass-card p-6 border-primary/20 z-20 shadow-2xl">
+                    <div class="text-4xl font-heavy text-primary">150+</div>
+                    <div class="text-[9px] uppercase tracking-widest text-gray-400 font-bold">Global Projects</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Grid -->
+    <section id="work" class="py-16 sm:py-24 lg:py-32 bg-[#050505] relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 sm:mb-16 lg:mb-20 gap-6">
+                <div class="min-w-0">
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-heavy mb-3 sm:mb-4">Elite <span class="text-primary">Portfolio</span></h2>
+                    <p class="text-gray-500 text-sm sm:text-base max-w-md">Crafting every frame with surgical precision to ensure your brand stands out.</p>
+                </div>
+                <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-4 w-full md:w-auto">
+                    <div class="text-center md:text-right hidden md:block">
+                        <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Direct Line</p>
+                        <p class="text-white font-bold tracking-wider text-sm sm:text-base">+92 330 55140 156</p>
+                    </div>
+                    <div class="h-12 w-[1px] bg-white/10 hidden md:block shrink-0"></div>
+                    <a href="#contact" class="text-center bg-white text-black px-6 sm:px-8 py-3 rounded-xl font-bold text-xs uppercase tracking-widest hover:bg-primary hover:text-white transition-all shadow-lg">Hire Studio</a>
+                </div>
+            </div>
+
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10">
+                <!-- Project 1 -->
+                <div class="glass-card group overflow-hidden">
+                    <div class="video-wrapper">
+                        <video src="videos/character%20animation.mp4" controls playsinline preload="metadata" title="Character animation"></video>
+                    </div>
+                    <div class="p-5 sm:p-6 md:p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[9px] font-bold text-primary uppercase tracking-widest border border-primary/30 px-3 py-1 rounded-full">Storytelling</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition">Character Animation</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Engagement-focused storytelling for top-tier YouTube channels.</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="glass-card group overflow-hidden">
+                    <div class="video-wrapper">
+                        <video id="video-dynamic-graphics" src="videos/dynamic%20animation.mp4#t=0" poster="all%20images/vlcsnap-2026-04-04-20h21m41s337.png" controls playsinline preload="metadata" title="Dynamic graphics"></video>
+                    </div>
+                    <div class="p-5 sm:p-6 md:p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[9px] font-bold text-primary uppercase tracking-widest border border-primary/30 px-3 py-1 rounded-full">Branding</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition">Dynamic Graphics</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Premium motion design tailored for social growth and brand identity.</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="glass-card group overflow-hidden">
+                    <div class="video-wrapper">
+                        <img src="videos/envirment%20design.jpg" alt="Atmospheric environment design">
+                    </div>
+                    <div class="p-5 sm:p-6 md:p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[9px] font-bold text-primary uppercase tracking-widest border border-primary/30 px-3 py-1 rounded-full">Visuals</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition">Atmospheric Scenes</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Intricately detailed 2D backgrounds for immersive animation worlds.</p>
+                    </div>
+                </div>
+
+                <!-- Project 4: Cartoon Rhymes -->
+                <div class="glass-card group overflow-hidden">
+                    <div class="video-wrapper">
+                        <video src="videos/rhyum.mp4" poster="all%20images/vlcsnap-2026-04-04-20h22m07s822.png" controls playsinline preload="metadata" title="Cartoon rhymes"></video>
+                    </div>
+                    <div class="p-5 sm:p-6 md:p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[9px] font-bold text-primary uppercase tracking-widest border border-primary/30 px-3 py-1 rounded-full">Educational</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition">Cartoon Rhymes</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Fun and colorful rhyme animations for kids' educational channels.</p>
+                    </div>
+                </div>
+
+                <!-- Project 5: Horror Animation -->
+                <div class="glass-card group overflow-hidden">
+                    <div class="video-wrapper">
+                        <video src="videos/horror%20video.mp4" poster="all%20images/vlcsnap-2026-04-04-20h21m51s926.png" controls playsinline preload="metadata" title="Horror animation"></video>
+                    </div>
+                    <div class="p-5 sm:p-6 md:p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[9px] font-bold text-primary uppercase tracking-widest border border-primary/30 px-3 py-1 rounded-full">Atmospheric</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition">Horror Animation</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Spooky and dark 2D storytelling with high-tension motion design.</p>
+                    </div>
+                </div>
+
+                <!-- Project 6: Caricature Design -->
+                <div class="glass-card group overflow-hidden">
+                    <div class="video-wrapper">
+                        <video src="videos/character%20design.mp4" controls playsinline preload="metadata" title="Caricature design"></video>
+                    </div>
+                    <div class="p-5 sm:p-6 md:p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[9px] font-bold text-primary uppercase tracking-widest border border-primary/30 px-3 py-1 rounded-full">Artistic</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition">Caricature Design</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Professional stylized caricatures and unique 2D character designs.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Expertise Section with DP -->
+    <section class="py-14 sm:py-20 md:py-24 border-y border-white/5 bg-black">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 md:gap-16 lg:gap-20 items-center">
+            <div class="flex justify-center md:justify-start order-2 md:order-1">
+                <div class="relative">
+                    <div class="absolute -inset-4 bg-primary/20 blur-3xl rounded-full"></div>
+                    <img src="all%20images/ChatGPT%20Image%20Apr%203%2C%202026%2C%2006_43_06%20PM.png" alt="Hashmi Animator" class="relative z-10 w-52 h-52 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full avatar-glow object-cover" onerror="this.src='https://ui-avatars.com/api/?name=Hashmi+Studio&background=7C3AED&color=fff'">
+                </div>
+            </div>
+            <div class="order-1 md:order-2 text-center md:text-left min-w-0">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-heavy mb-4 sm:mb-6">Built on <span class="text-primary italic">Innovation</span></h2>
+                <p class="text-gray-400 text-base sm:text-lg mb-6 sm:mb-8 font-light leading-relaxed">
+                    With over 150 successful deliveries, Hashmi Studio is dedicated to pushing the boundaries of 2D animation. We don't just move pixels; we breathe life into stories that captivate millions.
+                </p>
+                <div class="grid grid-cols-2 gap-3 sm:gap-6 max-w-md mx-auto md:max-w-none md:mx-0">
+                    <div class="glass-card p-5 sm:p-8 border-white/5 text-center">
+                        <p class="text-2xl sm:text-3xl font-bold text-primary mb-1">150+</p>
+                        <p class="text-[9px] uppercase tracking-widest text-gray-500 font-bold">Deliveries</p>
+                    </div>
+                    <div class="glass-card p-5 sm:p-8 border-white/5 text-center">
+                        <p class="text-2xl sm:text-3xl font-bold text-primary mb-1">5+</p>
+                        <p class="text-[9px] uppercase tracking-widest text-gray-500 font-bold">Years Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 sm:py-24 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden bg-[#050505]">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20">
+            <div class="min-w-0">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl font-heavy mb-6 sm:mb-8 tracking-tighter">Ready to <br> <span class="text-primary italic">Connect?</span></h2>
+                <p class="text-gray-400 text-base sm:text-lg mb-8 sm:mb-12 font-light leading-relaxed max-w-md">Whether it's a quick logo intro or a full-scale animation series, let's discuss how Hashmi Studio can help you scale.</p>
+                
+                <div class="space-y-6 sm:space-y-8">
+                    <div class="flex items-start gap-4 sm:gap-6">
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-xl bg-primary/10 flex items-center justify-center border border-primary/20">
+                            <i class="far fa-envelope text-primary"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Official Email</p>
+                            <p class="text-base sm:text-lg font-bold break-words">sharifdesigner2@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start gap-4 sm:gap-6">
+                        <div class="w-11 h-11 sm:w-12 sm:h-12 shrink-0 rounded-xl bg-green-500/10 flex items-center justify-center border border-green-500/20">
+                            <i class="fab fa-whatsapp text-green-500 text-xl"></i>
+                        </div>
+                        <div class="min-w-0">
+                            <p class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Direct WhatsApp</p>
+                            <p class="text-base sm:text-lg font-bold">+92 330 55140 156</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 sm:mt-12">
+                    <a href="https://wa.me/9233055140156" class="inline-flex items-center justify-center gap-3 sm:space-x-4 bg-white text-black w-full sm:w-auto px-8 sm:px-10 py-4 sm:py-5 rounded-2xl font-bold text-sm sm:text-base hover:bg-primary hover:text-white transition shadow-2xl">
+                        <span>Instant Consultation</span>
+                        <i class="fas fa-paper-plane text-xs"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <div class="glass-card p-5 sm:p-8 md:p-10 relative min-w-0">
+                <h3 class="text-xl sm:text-2xl font-bold mb-2 sm:mb-3">Quick Inquiry</h3>
+                <p class="text-sm text-gray-500 mb-4 sm:mb-5 leading-relaxed">
+                    Submissions are delivered automatically to
+                    <a href="mailto:sharifdesigner2@gmail.com" class="text-primary hover:underline break-all">sharifdesigner2@gmail.com</a>
+                    (via FormSubmit when the site is opened over <strong class="text-gray-400">http://</strong> or <strong class="text-gray-400">https://</strong>).
+                </p>
+                <div id="form-file-warning" class="hidden mb-6 p-4 rounded-xl border border-amber-500/35 bg-amber-500/[0.12] text-sm text-amber-100/95 leading-relaxed">
+                    <p class="font-bold text-amber-200 mb-2">You opened this page as a file (file://)</p>
+                    <p class="mb-3">FormSubmit blocks that for security. To test the form in the browser, start a tiny web server, then open <strong class="text-white">http://localhost:8080</strong> — for example double‑click <code class="text-white bg-white/10 px-1.5 py-0.5 rounded text-xs">start-website-server.bat</code> in your project folder (needs Python or Node installed).</p>
+                    <p class="mb-0"><strong class="text-amber-200">Send Inquiry</strong> will still work from here by opening your email app with a pre-filled draft to <span class="text-white">sharifdesigner2@gmail.com</span>.</p>
+                </div>
+                <form id="inquiry-form" action="https://formsubmit.co/sharifdesigner2%40gmail.com" method="POST" class="relative space-y-6" data-studio-inbox="sharifdesigner2@gmail.com">
+                    <input type="hidden" name="_subject" value="Hashmi Studio — Quick Inquiry">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="text" name="_honey" class="absolute -left-[9999px] w-px h-px opacity-0 pointer-events-none" tabindex="-1" autocomplete="off" aria-hidden="true">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Full Name</label>
+                            <input type="text" name="name" required placeholder="John Doe" class="form-input w-full p-4 rounded-xl">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Email Address</label>
+                            <input type="email" name="email" required placeholder="john@example.com" class="form-input w-full p-4 rounded-xl">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Project Category</label>
+                        <select name="project_type" class="form-input w-full p-4 rounded-xl appearance-none cursor-pointer">
+                            <option value="2D Animation">2D Character Animation</option>
+                            <option value="Cartoon Rhymes">Cartoon Rhymes</option>
+                            <option value="Horror Animation">Horror Animation</option>
+                            <option value="Caricature Design">Caricature Design</option>
+                            <option value="Motion Graphics">YouTube Motion Graphics</option>
+                            <option value="Explainer Video">Explainer Video</option>
+                            <option value="Logo Animation">Logo Animation</option>
+                            <option value="Other">Custom Request</option>
+                        </select>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest ml-1">Project Details</label>
+                        <textarea name="message" required rows="4" placeholder="Briefly describe your vision..." class="form-input w-full p-4 rounded-xl"></textarea>
+                    </div>
+                    <button type="submit" id="form-submit" class="bg-primary w-full py-5 rounded-2xl font-bold text-xs uppercase tracking-widest hover:shadow-[0_15px_30px_rgba(124,58,237,0.4)] transition transform hover:-translate-y-1">
+                        Send Inquiry
+                    </button>
+                    <div id="form-status"></div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 sm:py-16 md:py-20 border-t border-white/5 bg-[#050505] pb-[calc(1.5rem+env(safe-area-inset-bottom))]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <div class="flex flex-col items-center mb-8 sm:mb-12">
+                <img src="all%20images/ChatGPT%20Image%20Apr%203%2C%202026%2C%2006_43_06%20PM.png" alt="Hashmi Logo" class="w-20 h-20 sm:w-24 sm:h-24 rounded-full border-2 border-primary object-cover mb-4 sm:mb-6 shadow-2xl" onerror="this.src='https://ui-avatars.com/api/?name=Hashmi+Studio&background=7C3AED&color=fff'">
+                <div class="text-2xl sm:text-3xl md:text-4xl font-heavy tracking-tighter uppercase">
+                    Hashmi <span class="text-primary">Studio</span>
+                </div>
+            </div>
+            
+            <div class="flex flex-wrap justify-center gap-6 sm:gap-8 md:gap-10 mb-8 sm:mb-12 px-2">
+                <a href="#" class="text-gray-500 hover:text-primary transition-all text-2xl"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="text-gray-500 hover:text-primary transition-all text-2xl"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-gray-500 hover:text-primary transition-all text-2xl"><i class="fab fa-behance"></i></a>
+                <a href="#" class="text-gray-500 hover:text-primary transition-all text-2xl"><i class="fab fa-twitter"></i></a>
+            </div>
+            
+            <div class="text-[10px] font-bold text-gray-600 uppercase tracking-[0.5em] mb-4">
+                &copy; 2024 Hashmi Studio. Premium Animation Excellence.
+            </div>
+            <div class="text-[9px] text-gray-700 font-medium">Design & Development by Hashmi Studio</div>
+        </div>
+    </footer>
+
+    <!-- Mobile nav -->
+    <script>
+        (function () {
+            const toggle = document.getElementById("nav-toggle");
+            const menu = document.getElementById("nav-mobile");
+            const icon = document.getElementById("nav-toggle-icon");
+            if (!toggle || !menu || !icon) return;
+
+            function setOpen(open) {
+                toggle.setAttribute("aria-expanded", open);
+                if (open) {
+                    menu.classList.remove("hidden");
+                    menu.classList.add("flex");
+                    icon.classList.remove("fa-bars");
+                    icon.classList.add("fa-times");
+                    document.body.classList.add("nav-menu-open");
+                } else {
+                    menu.classList.add("hidden");
+                    menu.classList.remove("flex");
+                    icon.classList.remove("fa-times");
+                    icon.classList.add("fa-bars");
+                    document.body.classList.remove("nav-menu-open");
+                }
+            }
+
+            toggle.addEventListener("click", function () {
+                setOpen(menu.classList.contains("hidden"));
+            });
+
+            menu.querySelectorAll("a").forEach(function (link) {
+                link.addEventListener("click", function () {
+                    setOpen(false);
+                });
+            });
+
+            document.addEventListener("keydown", function (e) {
+                if (e.key === "Escape") setOpen(false);
+            });
+
+            window.addEventListener("resize", function () {
+                if (window.matchMedia("(min-width: 768px)").matches) setOpen(false);
+            });
+        })();
+    </script>
+
+    <!-- FormSubmit needs http(s). file:// uses mailto fallback. -->
+    <script>
+        (function () {
+            const form = document.getElementById("inquiry-form");
+            const status = document.getElementById("form-status");
+            const submitBtn = document.getElementById("form-submit");
+            const fileWarning = document.getElementById("form-file-warning");
+            const studioInbox = (form && form.getAttribute("data-studio-inbox")) || "sharifdesigner2@gmail.com";
+            const formSubmitAjaxUrl = "https://formsubmit.co/ajax/" + encodeURIComponent(studioInbox);
+            const isFilePage = window.location.protocol === "file:";
+
+            if (isFilePage && fileWarning) {
+                fileWarning.classList.remove("hidden");
+            }
+
+            function buildMailtoHref(fd) {
+                var name = String(fd.get("name") || "").trim();
+                var email = String(fd.get("email") || "").trim();
+                var cat = String(fd.get("project_type") || "").trim();
+                var msg = String(fd.get("message") || "").trim();
+                var body =
+                    "Name: " +
+                    name +
+                    "\nEmail: " +
+                    email +
+                    "\nProject category: " +
+                    cat +
+                    "\n\n" +
+                    msg;
+                if (body.length > 1900) {
+                    body = body.slice(0, 1900) + "\n…(message trimmed for email link length)";
+                }
+                return (
+                    "mailto:" +
+                    studioInbox +
+                    "?subject=" +
+                    encodeURIComponent("Hashmi Studio — Quick Inquiry") +
+                    "&body=" +
+                    encodeURIComponent(body)
+                );
+            }
+
+            if (!form || !status || !submitBtn) return;
+
+            form.addEventListener("submit", async function (event) {
+                event.preventDefault();
+                submitBtn.disabled = true;
+                submitBtn.innerText = "TRANSMITTING...";
+                status.innerHTML = "";
+                status.className = "";
+
+                var honey = form.querySelector('input[name="_honey"]');
+                if (honey && honey.value !== "") {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "Send Inquiry";
+                    return;
+                }
+
+                var fd = new FormData(form);
+
+                if (isFilePage) {
+                    window.location.href = buildMailtoHref(fd);
+                    status.innerHTML =
+                        "Your email app should open with a draft to " +
+                        studioInbox +
+                        ". Send it to complete your inquiry. For silent in-page submit, open this site via <strong>http://localhost:8080</strong> (use start-website-server.bat).";
+                    status.className = "success";
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "Send Inquiry";
+                    return;
+                }
+
+                fd.set("_replyto", (fd.get("email") || "").toString());
+
+                try {
+                    var response = await fetch(formSubmitAjaxUrl, {
+                        method: "POST",
+                        body: fd,
+                        headers: { Accept: "application/json" }
+                    });
+
+                    var data = await response.json().catch(function () {
+                        return {};
+                    });
+
+                    var serverHint =
+                        (data.message && String(data.message).toLowerCase().indexOf("web server") !== -1) ||
+                        (data.error && String(data.error).toLowerCase().indexOf("web server") !== -1);
+
+                    if (response.ok && !data.error && data.success !== "false" && data.success !== false) {
+                        status.innerHTML = "Success! We will contact you shortly.";
+                        status.className = "success";
+                        form.reset();
+                    } else {
+                        var msg =
+                            data.message ||
+                            data.error ||
+                            "Could not send. If you have not yet, confirm FormSubmit in your inbox, then try again.";
+                        if (serverHint) {
+                            msg +=
+                                " Or run <strong>start-website-server.bat</strong> and open <strong>http://localhost:8080</strong> instead of double-clicking the HTML file.";
+                        }
+                        status.innerHTML = msg;
+                        status.className = "error";
+                    }
+                } catch (error) {
+                    status.innerHTML =
+                        "Connection error. Open this site through a web server (e.g. <strong>http://localhost:8080</strong> via start-website-server.bat), not as a saved file.";
+                    status.className = "error";
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerText = "Send Inquiry";
+                }
+            });
+        })();
+    </script>
+    <script>
+        (function () {
+            const v = document.getElementById("video-dynamic-graphics");
+            if (!v) return;
+            v.addEventListener(
+                "loadedmetadata",
+                () => {
+                    v.currentTime = 0;
+                },
+                { once: true }
+            );
+        })();
+        (function () {
+            const video = document.getElementById("video-showreel");
+            const btn = document.getElementById("showreel-play-btn");
+            if (!video || !btn) return;
+
+            function syncOverlay() {
+                if (!video.paused) {
+                    btn.classList.add("is-hidden");
+                    return;
+                }
+                if (video.ended || video.currentTime < 0.25) {
+                    btn.classList.remove("is-hidden");
+                } else {
+                    btn.classList.add("is-hidden");
+                }
+            }
+
+            btn.addEventListener("click", () => {
+                video.play();
+            });
+            video.addEventListener("play", syncOverlay);
+            video.addEventListener("pause", syncOverlay);
+            video.addEventListener("ended", syncOverlay);
+            video.addEventListener("seeked", syncOverlay);
+        })();
+    </script>
+
+</body>
+</html>
