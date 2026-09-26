@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <title>Hashmi Studio | PREMIUM ANIMATION Portfolio</title>
@@ -95,68 +96,6 @@
             height: 100%;
             border: 0;
             object-fit: cover;
-        }
-
-        .showreel-play-overlay {
-            position: absolute;
-            inset: 0;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 1rem;
-            background: rgba(0, 0, 0, 0.4);
-            border: none;
-            cursor: pointer;
-            transition: opacity 0.35s ease, background 0.25s ease;
-            border-radius: 16px;
-        }
-        .showreel-play-overlay:hover {
-            background: rgba(124, 58, 237, 0.22);
-        }
-        .showreel-play-overlay.is-hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-        @media (max-width: 639px) {
-            .showreel-play-icon {
-                width: 3.5rem;
-                height: 3.5rem;
-            }
-            .showreel-play-icon i {
-                font-size: 1.1rem;
-            }
-            .showreel-play-label {
-                letter-spacing: 0.2em;
-                font-size: 9px;
-            }
-        }
-        .showreel-play-icon {
-            width: 4.5rem;
-            height: 4.5rem;
-            border-radius: 50%;
-            background: var(--primary);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 12px 40px rgba(124, 58, 237, 0.45);
-            transition: transform 0.25s ease;
-        }
-        .showreel-play-overlay:hover .showreel-play-icon {
-            transform: scale(1.06);
-        }
-        .showreel-play-icon i {
-            font-size: 1.35rem;
-            margin-left: 3px;
-            color: #fff;
-        }
-        .showreel-play-label {
-            font-size: 10px;
-            font-weight: 800;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: rgba(255, 255, 255, 0.85);
         }
 
         /* Animated background glow - Custom Purple */
@@ -310,11 +249,7 @@
 
                 <div class="glass-card p-3 relative z-10">
                     <div class="video-wrapper rounded-2xl">
-                       <video id="video-showreel" src="./videos-web/Porfolio video.mp4" poster="images-web/vlcsnap-2026-04-04-20h22m36s049.jpg" controls playsinline preload="none" title="Hashmi Studio showreel"></video>
-                        <button type="button" class="showreel-play-overlay" id="showreel-play-btn" aria-label="Play showreel">
-                            <span class="showreel-play-icon" aria-hidden="true"><i class="fas fa-play"></i></span>
-                            <span class="showreel-play-label">Watch Showreel</span>
-                        </button>
+                       <iframe src="https://www.youtube.com/embed/RYiz__2iS0M?rel=0" title="Hashmi Studio showreel" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                 </div>
                 
@@ -349,7 +284,7 @@
                 <!-- Project 1 -->
                 <div class="glass-card group overflow-hidden">
                     <div class="video-wrapper">
-                        <video src="videos-web/character%20animation.mp4" poster="images-web/poster-character-animation.jpg" controls playsinline preload="none" loading="lazy" title="Character animation"></video>
+                        <iframe src="https://www.youtube.com/embed/Sds_3Yn741s?rel=0" title="Character animation" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="p-5 sm:p-6 md:p-8">
                         <div class="flex items-center justify-between mb-4">
@@ -363,7 +298,7 @@
                 <!-- Project 2 -->
                 <div class="glass-card group overflow-hidden">
                     <div class="video-wrapper">
-                        <video id="video-dynamic-graphics" src="videos-web/dynamic%20animation.mp4" poster="images-web/vlcsnap-2026-04-04-20h21m41s337.jpg" controls playsinline preload="none" loading="lazy" title="Dynamic graphics"></video>
+                        <iframe src="https://www.youtube.com/embed/ZiecZfpiAL0?rel=0" title="Dynamic graphics" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="p-5 sm:p-6 md:p-8">
                         <div class="flex items-center justify-between mb-4">
@@ -391,7 +326,7 @@
                 <!-- Project 4: Cartoon Rhymes -->
                 <div class="glass-card group overflow-hidden">
                     <div class="video-wrapper">
-                        <video src="./videos-web/Rhyum11.mp4" poster="images-web/vlcsnap-2026-04-04-20h22m07s822.jpg" controls playsinline preload="none" loading="lazy" title="Cartoon rhymes"></video>
+                        <iframe src="https://www.youtube.com/embed/hIDWVoTNTZ4?rel=0" title="Cartoon rhymes" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="p-5 sm:p-6 md:p-8">
                         <div class="flex items-center justify-between mb-4">
@@ -405,7 +340,7 @@
                 <!-- Project 5: Horror Animation -->
                 <div class="glass-card group overflow-hidden">
                     <div class="video-wrapper">
-                        <video src="videos-web/horror%20video.mp4" poster="images-web/vlcsnap-2026-04-04-20h21m51s926.jpg" controls playsinline preload="none" loading="lazy" title="Horror animation"></video>
+                        <iframe src="https://www.youtube.com/embed/va5WPSNraxY?rel=0" title="Horror animation" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="p-5 sm:p-6 md:p-8">
                         <div class="flex items-center justify-between mb-4">
@@ -416,17 +351,59 @@
                     </div>
                 </div>
 
-                <!-- Project 6: Caricature Design -->
+                <!-- Project 6: Character Design -->
                 <div class="glass-card group overflow-hidden">
                     <div class="video-wrapper">
-                        <video src="videos-web/character%20design.mp4" poster="images-web/poster-caricature-design.jpg" controls playsinline preload="none" loading="lazy" title="Caricature design"></video>
+                        <iframe src="https://www.youtube.com/embed/s9zxNu5qk9w?rel=0" title="Character design" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </div>
                     <div class="p-5 sm:p-6 md:p-8">
                         <div class="flex items-center justify-between mb-4">
                             <span class="text-[9px] font-bold text-primary uppercase tracking-widest border border-primary/30 px-3 py-1 rounded-full">Artistic</span>
                         </div>
-                        <h3 class="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition">Caricature Design</h3>
-                        <p class="text-gray-500 text-sm leading-relaxed">Professional stylized caricatures and unique 2D character designs.</p>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition">Character Design</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Unique, expressive 2D character designs crafted for animation.</p>
+                    </div>
+                </div>
+
+                <!-- Project 7: History Animation -->
+                <div class="glass-card group overflow-hidden">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/DHRgR3Ucw_Y?rel=0" title="History Animation" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-5 sm:p-6 md:p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[9px] font-bold text-primary uppercase tracking-widest border border-primary/30 px-3 py-1 rounded-full">Documentary</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition">History Animation</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Cinematic 2D animation that brings historical events and eras to life.</p>
+                    </div>
+                </div>
+
+                <!-- Project 8: Character Rigging -->
+                <div class="glass-card group overflow-hidden">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/Bv75O0LwljY?rel=0" title="Character Rigging" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-5 sm:p-6 md:p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[9px] font-bold text-primary uppercase tracking-widest border border-primary/30 px-3 py-1 rounded-full">Technical</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition">Character Rigging</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Flexible, production-ready character rigs for smooth, natural motion.</p>
+                    </div>
+                </div>
+
+                <!-- Project 9: Shorts -->
+                <div class="glass-card group overflow-hidden">
+                    <div class="video-wrapper">
+                        <iframe src="https://www.youtube.com/embed/NacUWW7Jj4o?rel=0" title="Shorts" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                    </div>
+                    <div class="p-5 sm:p-6 md:p-8">
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-[9px] font-bold text-primary uppercase tracking-widest border border-primary/30 px-3 py-1 rounded-full">Short-Form</span>
+                        </div>
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 group-hover:text-primary transition">Shorts</h3>
+                        <p class="text-gray-500 text-sm leading-relaxed">Punchy vertical animations built for YouTube Shorts and social feeds.</p>
                     </div>
                 </div>
             </div>
@@ -525,7 +502,7 @@
                             <option value="2D Animation">2D Character Animation</option>
                             <option value="Cartoon Rhymes">Cartoon Rhymes</option>
                             <option value="Horror Animation">Horror Animation</option>
-                            <option value="Caricature Design">Caricature Design</option>
+                            <option value="Character Design">Character Design</option>
                             <option value="Motion Graphics">YouTube Motion Graphics</option>
                             <option value="Explainer Video">Explainer Video</option>
                             <option value="Logo Animation">Logo Animation</option>
@@ -662,44 +639,6 @@
                     submitBtn.innerText = "Send Inquiry";
                 }
             });
-        })();
-    </script>
-    <script>
-        (function () {
-            const v = document.getElementById("video-dynamic-graphics");
-            if (!v) return;
-            v.addEventListener(
-                "loadedmetadata",
-                () => {
-                    v.currentTime = 0;
-                },
-                { once: true }
-            );
-        })();
-        (function () {
-            const video = document.getElementById("video-showreel");
-            const btn = document.getElementById("showreel-play-btn");
-            if (!video || !btn) return;
-
-            function syncOverlay() {
-                if (!video.paused) {
-                    btn.classList.add("is-hidden");
-                    return;
-                }
-                if (video.ended || video.currentTime < 0.25) {
-                    btn.classList.remove("is-hidden");
-                } else {
-                    btn.classList.add("is-hidden");
-                }
-            }
-
-            btn.addEventListener("click", () => {
-                video.play();
-            });
-            video.addEventListener("play", syncOverlay);
-            video.addEventListener("pause", syncOverlay);
-            video.addEventListener("ended", syncOverlay);
-            video.addEventListener("seeked", syncOverlay);
         })();
     </script>
 
